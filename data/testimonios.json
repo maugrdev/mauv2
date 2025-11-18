@@ -1,0 +1,10 @@
+[
+  {
+    "nombre": "Juan Pérez",
+    "mensaje": "Muy buen servicio, recomendado.",
+    "avatar": "img/juan.jpg",
+    "fecha": "2025-02-10",
+    "rating": 5,
+    "reply": "¡Gracias por tu comentario Juan!"
+  }
+]
