@@ -1,33 +1,34 @@
 const sqlite3 = require("sqlite3").verbose();
-const fs = require("fs");
+const { open } = require("sqlite");
 const path = require("path");
+const fs = require("fs");
 
-// Ruta a la base
-const dbPath = path.join(__dirname, "database", "testimonios.db");
-
-// Si la carpeta no existe, crearla
+// Crear carpeta database si no existe
 const folder = path.join(__dirname, "database");
 if (!fs.existsSync(folder)) {
   fs.mkdirSync(folder);
 }
 
-// Abrir o crear la base
-const db = new sqlite3.Database(dbPath, (err) => {
-  if (err) {
-    console.error("Error al abrir la base SQLite:", err.message);
-  } else {
-    console.log("Base SQLite lista.");
-  }
-});
+const dbPath = path.join(folder, "testimonios.db");
 
-// Crear tabla automáticamente
-db.run(`
-  CREATE TABLE IF NOT EXISTS testimonios (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    nombre TEXT NOT NULL,
-    mensaje TEXT NOT NULL,
-    fecha TEXT NOT NULL
-  )
-`);
+async function createDB() {
+  const db = await open({
+    filename: dbPath,
+    driver: sqlite3.Database
+  });
 
-module.exports = db;
+  await db.exec(`
+    CREATE TABLE IF NOT EXISTS testimonios (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      nombre TEXT NOT NULL,
+      mensaje TEXT NOT NULL,
+      fecha TEXT NOT NULL,
+      foto TEXT,
+      rating INTEGER
+    )
+  `);
+
+  return db;
+}
+
+module.exports = createDB();
