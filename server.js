@@ -1,24 +1,17 @@
 const express = require("express");
+const cors = require("cors");
 const path = require("path");
 
 const app = express();
-const testimoniosRoutes = require("./routes/testimonios");
 
 // Middlewares
+app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public"))); // Tu web
 
 // Rutas API
-app.use("/api", testimoniosRoutes);
+const testimoniosRoutes = require("./routes/testimonios");
+app.use("/api/testimonios", testimoniosRoutes);
 
-// Ruta principal
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
-
-// PORT dinámico para Render
 const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-  console.log(`Servidor iniciado en http://localhost:${PORT}`);
-});
+app.listen(PORT, () => console.log("🚀 Servidor en puerto " + PORT));
