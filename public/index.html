@@ -1041,5 +1041,39 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
         s2.style.transform = `translate(${x * -10}px, ${y * -10}px)`;
       });
     }
+<script>
+fetch("data/testimonios.json")
+  .then(res => res.json())
+  .then(data => {
+    const container = document.getElementById("testimonioGrid");
+    container.innerHTML = "";
+
+    data.forEach(t => {
+      container.innerHTML += `
+        <div class="testimonio">
+          <div class="test-header">
+            <div class="test-info">
+              <div class="test-img">
+                <img src="${t.avatar}" alt="${t.nombre}">
+              </div>
+              <strong>${t.nombre}</strong>
+            </div>
+            <div class="test-time">${t.fecha}</div>
+          </div>
+
+          <div class="test-content">
+            <p>"${t.mensaje}"</p>
+          </div>
+
+          ${t.reply ? `
+            <div class="admin-reply">
+              <strong>Admin</strong>: ${t.reply}
+            </div>
+          ` : ""}
+        </div>
+      `;
+    });
+  });
+</script>
 
   </script></body></html>
