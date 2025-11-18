@@ -489,7 +489,61 @@ body[data-theme="light"] {
 
     /* subtle focus outline */
     a:focus, button:focus, input:focus, textarea:focus{outline:3px solid rgba(179,136,255,0.16);outline-offset:3px}
-  </style></head><body data-theme="dark"><div class="ambient" aria-hidden="true"></div><div class="float-shape s1" aria-hidden="true"></div><div class="float-shape s2" aria-hidden="true"></div><header id="site-header" role="banner" aria-label="Encabezado principal"><div class="brand" aria-hidden><div class="logo" title="mau.dev"><img src="smmau.jpg" alt="Logo Mau" class="logo-img"></div><div><div class="site-title">mau.dev</div><div class="site-sub">webdesigner jr</div></div></div><nav role="navigation" aria-label="Enlaces de navegación"><a class="nav-link" href="#about">Sobre mí</a><a class="nav-link" href="#services">Servicios</a><a class="nav-link" href="#portafolio">Portafolio</a><a class="nav-link" href="#contact">Contacto</a><button id="theme-toggle" class="theme-btn" aria-pressed="false" title="Cambiar tema" aria-label="Cambiar tema (Oscuro/Claro)"><span class="theme-ico" id="theme-ico">🌙</span></button></nav></header><main><section class="hero" aria-labelledby="hero-title"><div class="hero-left reveal" data-reveal><span class="eyebrow">portafolio</span><h1 id="hero-title">Hola, soy <span class="gradient type" id="typed">Mau</span><br/><small style="font-weight:600;font-size:16px;color:var(--muted)">Diseñador & desarrollador web</small></h1><p class="lead">Construyendo internet bonito, una página a la vez.</p><p class="lead">Diseño y 
+  </style></head>
+  <script>
+const testimonios = [
+  {
+    nombre: "Juan Martínez",
+    mensaje: "Excelente servicio, totalmente recomendado.",
+    avatar: "https://i.pravatar.cc/150?img=12",
+    fecha: "2025-02-14",
+  },
+  {
+    nombre: "María López",
+    mensaje: "Muy profesional, me encantó el resultado.",
+    avatar: "https://i.pravatar.cc/150?img=57",
+    fecha: "2025-02-10",
+  }
+];
+
+function renderTestimonios() {
+  const grid = document.getElementById("testimonioGrid");
+
+  if (!grid) {
+    console.error("❌ No se encontró el elemento #testimonioGrid");
+    return;
+  }
+
+  if (testimonios.length === 0) {
+    grid.innerHTML = "<p>No hay testimonios aún.</p>";
+    return;
+  }
+
+  grid.innerHTML = testimonios.map(t => `
+    <div class="testimonio">
+      <div class="test-header">
+        <div class="test-info">
+          <div class="test-img">
+            <img src="${t.avatar}" alt="Avatar">
+          </div>
+          <div>
+            <strong>${t.nombre}</strong><br>
+            <span class="test-time">${t.fecha}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-content">
+        <p>${t.mensaje}</p>
+      </div>
+    </div>
+  `).join("");
+}
+
+document.addEventListener("DOMContentLoaded", renderTestimonios);
+</script>
+
+  <body data-theme="dark"><div class="ambient" aria-hidden="true"></div><div class="float-shape s1" aria-hidden="true"></div><div class="float-shape s2" aria-hidden="true"></div><header id="site-header" role="banner" aria-label="Encabezado principal"><div class="brand" aria-hidden><div class="logo" title="mau.dev"><img src="smmau.jpg" alt="Logo Mau" class="logo-img"></div><div><div class="site-title">mau.dev</div><div class="site-sub">webdesigner jr</div></div></div><nav role="navigation" aria-label="Enlaces de navegación"><a class="nav-link" href="#about">Sobre mí</a><a class="nav-link" href="#services">Servicios</a><a class="nav-link" href="#portafolio">Portafolio</a><a class="nav-link" href="#contact">Contacto</a><button id="theme-toggle" class="theme-btn" aria-pressed="false" title="Cambiar tema" aria-label="Cambiar tema (Oscuro/Claro)"><span class="theme-ico" id="theme-ico">🌙</span></button></nav></header><main><section class="hero" aria-labelledby="hero-title"><div class="hero-left reveal" data-reveal><span class="eyebrow">portafolio</span><h1 id="hero-title">Hola, soy <span class="gradient type" id="typed">Mau</span><br/><small style="font-weight:600;font-size:16px;color:var(--muted)">Diseñador & desarrollador web</small></h1><p class="lead">Construyendo internet bonito, una página a la vez.</p><p class="lead">Diseño y 
    
        código eficaz.</p><p class="lead"> Mood: café ☕ • lo-fi 🎧 • internet OG 👾</p><div class="cta-row" style="margin-top:14px"><a href="#contact" class="btn btn-primary" role="button">
     Trabajemos
@@ -1041,4 +1095,5 @@ document.getElementById('contactForm').addEventListener('submit', async (e) => {
         s2.style.transform = `translate(${x * -10}px, ${y * -10}px)`;
       });
     }
+
   </script></body></html>
