@@ -1,6 +1,0 @@
-CREATE TABLE IF NOT EXISTS testimonios (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    nombre TEXT,
-    mensaje TEXT,
-    fecha TEXT
-);
